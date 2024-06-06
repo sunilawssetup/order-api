@@ -1,0 +1,9 @@
+{
+  "orderId": 0,
+  "customerId": 1,
+  "hotelId": 1,
+  "menuId": 1,
+  "qty": 1,
+  "paymentStatus": "Pendding",
+  "orderStatus": "not-accepted"
+}
