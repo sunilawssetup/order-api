@@ -19,7 +19,7 @@ public class OrderGlobalException {
        return ResponseEntity.ok(ErrorDto.builder().
                 errorTime(LocalDateTime.now())
                 .path(webRequest.getDescription(false))
-                .message(runtimeException.getMessage())
+                .message(runtimeException.toString())
                 .httpStatus(HttpStatus.INTERNAL_SERVER_ERROR).build());
 
     }

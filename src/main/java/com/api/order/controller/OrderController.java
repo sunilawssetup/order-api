@@ -10,10 +10,9 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.jaxb.SpringDataJaxb;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Tag(
         name = "order-api",
@@ -43,5 +42,20 @@ public class OrderController {
     public OrderIteamDto bookOrder(@RequestBody OrderIteamDto orderIteamDto) {
 
         return orderService.bookOrder(orderIteamDto);
+    }
+
+    @Operation(summary = "getAllOrders", description = "here we are get all orders detail")
+    @ApiResponse(responseCode = "200", description = "HTTP STATUS IS OK")
+    @GetMapping("/getALlOrders")
+    public List<OrderIteamDto> getAllOrders() {
+        return orderService.getAllOrders();
+    }
+
+    @Operation(summary = "updateOrderStatus", description = "here we are update order status")
+    @ApiResponse(responseCode = "200", description = "HTTP STATUS IS OK")
+    @PostMapping("/updateOrderStatus/{orderId}")
+    public OrderIteamDto updateOrderStatus(@PathVariable("orderId") Long orderId, @RequestParam("orderStatus") String orderStatus) {
+        return orderService.updateOrderStatus(orderId, orderStatus);
+
     }
 }
